@@ -5,8 +5,7 @@ INSERT INTO Candidat (id, nom, prenom, matricule) VALUES
 
 INSERT INTO Correcteur (id, nom) VALUES
 (1,'Correcteur1'),
-(2,'Correcteur2'),
-(3,'Correcteur3');
+(2,'Correcteur2');
 
 
 INSERT INTO Matiere (id, nom) VALUES
@@ -27,27 +26,22 @@ INSERT INTO Operateur (id, nom) VALUES
 
 
 INSERT INTO Parametres (id,id_matiere,seuil,id_operateur,id_resolution) VALUES
-(1,1,7,1,2),
-(2,1,7,4,3),
-(3,2,2,2,1),
-(4,2,2,3,2);
+(1,1,2,1,2),
+(2,1,2,4,3),
+(3,2,3,2,1),
+(4,2,3,3,2);
 
 
 INSERT INTO Note (id_candidat,id_matiere,id_correcteur,note) VALUES
-(1,1,1,15),
-(1,1,2,10),
-(1,1,3,12),
-(1,2,1,10),
-(1,2,2,10),
+(1,1,1,12),
+(1,1,2,11),
+(1,2,1,13),
+(1,2,2,15),
 
-(2,1,1,9),
-(2,1,2,8),
-(2,1,3,11),
-(2,2,1,13),
-(2,2,2,11);
-
-
-
+(2,1,1,12),
+(2,1,2,15),
+(2,2,1,14),
+(2,2,2,16);
 
 
 

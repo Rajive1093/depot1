@@ -11,33 +11,55 @@
 <body>
     <jsp:include page="../layout/navbar.jsp" />
     
-    <div class="container">
-        <h1>${titre}</h1>
-        <p style="color: var(--text-secondary); margin-bottom: 20px;"></p>
-        
-        <div class="card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Candidat</th>
-                        <c:forEach var="matiere" items="${matieres}">
-                            <th>${matiere.nom}</th>
-                        </c:forEach>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="candidat" items="${candidats}">
-                        <tr>
-                            <td style="font-weight: 600;">${candidat.nom} ${candidat.prenom} (${candidat.matricule})</td>
-                            <c:forEach var="matiere" items="${matieres}">
-                                <td>
-                                    <fmt:formatNumber value="${results[candidat.id][matiere.id]}" maxFractionDigits="2" />
-                                </td>
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header" style="border-bottom: none;">
+                <h1 style="font-size: 32px; background: var(--primary-gradient); -webkit-background-clip: text; color: transparent;">
+                    <i class="fas fa-graduation-cap" style="color: var(--primary-color); margin-right: 12px;"></i> ${titre}
+                </h1>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 16px;">
+                Voici le récapitulatif des notes finales calculées par le système.
+            </p>
+            
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="table-container" style="margin: 0;">
+                    <table style="margin: 0;">
+                        <thead style="background: rgba(0,0,0,0.2);">
+                            <tr>
+                                <th style="padding: 16px 20px;">Candidat</th>
+                                <c:forEach var="matiere" items="${matieres}">
+                                    <th style="padding: 16px 20px; text-align: center;">${matiere.nom}</th>
+                                </c:forEach>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="candidat" items="${candidats}">
+                                <tr>
+                                    <td>
+                                        <div class="candidat-name">
+                                            <div class="candidat-avatar">
+                                                ${candidat.nom.substring(0, 1)}
+                                            </div>
+                                            <div>
+                                                <strong style="font-size: 15px;">${candidat.nom} ${candidat.prenom}</strong>
+                                                <span class="candidat-matricule">Matricule: ${candidat.matricule}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <c:forEach var="matiere" items="${matieres}">
+                                        <td style="text-align: center; font-family: 'SF Mono', Consolas, monospace; font-size: 14px;">
+                                            <span style="background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 20px; display: inline-block;">
+                                                <fmt:formatNumber value="${results[candidat.id][matiere.id]}" maxFractionDigits="2" />
+                                            </span>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
                             </c:forEach>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

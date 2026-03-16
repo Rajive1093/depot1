@@ -10,37 +10,41 @@
 <body>
     <jsp:include page="../../layout/navbar.jsp" />
     
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1>${titre}</h1>
-            <a href="${pageContext.request.contextPath}/admin/operateurs/nouveau" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Nouveau Opérateur
-            </a>
-        </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>${titre}</h1>
+                <a href="${pageContext.request.contextPath}/admin/operateurs/nouveau" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nouveau Opérateur
+                </a>
+            </div>
 
-        <div class="card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="o" items="${operateurs}">
-                        <tr>
-                            <td>${o.id}</td>
-                            <td>${o.nom}</td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/admin/operateurs/modifier/${o.id}" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="o" items="${operateurs}">
+                                <tr>
+                                    <td>${o.id}</td>
+                                    <td><strong>${o.nom}</strong></td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/admin/operateurs/modifier/${o.id}" class="btn btn-secondary" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

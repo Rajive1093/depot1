@@ -26,28 +26,21 @@ INSERT INTO Operateur (id, nom) VALUES
 (4,'>=');
 
 
+-- INSERT INTO Parametres (id,id_matiere,seuil,id_operateur,id_resolution) VALUES
+-- (1,1,7,1,2),
+-- (2,1,7,4,3),
+-- (3,2,2,2,1),
+-- (4,2,2,3,2);
+
 INSERT INTO Parametres (id,id_matiere,seuil,id_operateur,id_resolution) VALUES
-(1,1,7,1,2),
-(2,1,7,4,3),
-(3,2,2,2,1),
-(4,2,2,3,2);
+(1,1,5,4,2),
+(2,1,9,1,3);
+
 
 
 INSERT INTO Note (id_candidat,id_matiere,id_correcteur,note) VALUES
-(1,1,1,15),
-(1,1,2,10),
-(1,1,3,12),
-(1,2,1,10),
-(1,2,2,10),
-
-(2,1,1,9),
-(2,1,2,8),
-(2,1,3,11),
-(2,2,1,13),
-(2,2,2,11);
-
-
-
+(1,1,1,10),
+(1,1,2,17);
 
 
 

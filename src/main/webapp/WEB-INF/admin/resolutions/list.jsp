@@ -10,37 +10,41 @@
 <body>
     <jsp:include page="../../layout/navbar.jsp" />
     
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1>${titre}</h1>
-            <a href="${pageContext.request.contextPath}/admin/resolutions/nouveau" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Nouvelle Résolution
-            </a>
-        </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>${titre}</h1>
+                <a href="${pageContext.request.contextPath}/admin/resolutions/nouveau" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nouvelle Résolution
+                </a>
+            </div>
 
-        <div class="card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="r" items="${resolutions}">
-                        <tr>
-                            <td>${r.id}</td>
-                            <td>${r.nom}</td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/admin/resolutions/modifier/${r.id}" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="r" items="${resolutions}">
+                                <tr>
+                                    <td>${r.id}</td>
+                                    <td><span style="color: var(--accent-color); font-weight: 600;">${r.nom}</span></td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/admin/resolutions/modifier/${r.id}" class="btn btn-secondary" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

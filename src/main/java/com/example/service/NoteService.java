@@ -87,7 +87,6 @@ public class NoteService {
                 }
             }
         }
-
         return 0.0;
     }
 

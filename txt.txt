@@ -35,6 +35,9 @@ public class NoteService {
                 .collect(Collectors.toList());
 
         List<Parametre> params = parametreDAO.findByMatiere(matiere);
+        Parametre ideal = null;
+
+        int distanceideal = 0;
 
         if (params.isEmpty()) {
             return 0.0;
@@ -74,16 +77,25 @@ public class NoteService {
 
             if (conditionMet) {
 
-                String nomResolution = param.getResolution().getNom().toLowerCase();
+                int distance_actuelle = (int) Math.abs(sommeDiff-seuil);
+                if (ideal == null || distance_actuelle < distanceideal || distance_actuelle == distanceideal && param.getSeuil() < ideal.getSeuil()) {
+                    distanceideal = distance_actuelle;
+                    ideal = param;
+                } else if (distance_actuelle == distanceideal) {
+                    
+                }
 
-                if (nomResolution.contains("plus petit")) {
-                    return valeurs.stream().min(Double::compare).orElse(0.0);
+                if (ideal!=null) {
+                    String nomResolution = ideal.getResolution().getNom().toLowerCase();
+                    if (nomResolution.contains("plus petit")) {
+                        return valeurs.stream().min(Double::compare).orElse(0.0);
 
-                } else if (nomResolution.contains("plus grand")) {
-                    return valeurs.stream().max(Double::compare).orElse(0.0);
+                    } else if (nomResolution.contains("plus grand")) {
+                        return valeurs.stream().max(Double::compare).orElse(0.0);
 
-                } else if (nomResolution.contains("moyenne")) {
-                    return calculMoyenne(valeurs);
+                    } else if (nomResolution.contains("moyenne")) {
+                        return calculMoyenne(valeurs);
+                    }
                 }
             }
         }

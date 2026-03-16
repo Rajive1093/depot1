@@ -35,6 +35,9 @@ public class NoteService {
                 .collect(Collectors.toList());
 
         List<Parametre> params = parametreDAO.findByMatiere(matiere);
+        Parametre ideal = null;
+
+        int distanceideal = 0;
 
         if (params.isEmpty()) {
             return 0.0;
@@ -74,18 +77,36 @@ public class NoteService {
 
             if (conditionMet) {
 
-                String nomResolution = param.getResolution().getNom().toLowerCase();
-
-                if (nomResolution.contains("plus petit")) {
-                    return valeurs.stream().min(Double::compare).orElse(0.0);
-
-                } else if (nomResolution.contains("plus grand")) {
-                    return valeurs.stream().max(Double::compare).orElse(0.0);
-
-                } else if (nomResolution.contains("moyenne")) {
-                    return calculMoyenne(valeurs);
+                int distance_actuelle = (int) Math.abs(sommeDiff-seuil);
+                if (ideal == null) {
+                    distanceideal = distance_actuelle;
+                    ideal = param;
+                }
+                if (distance_actuelle < distanceideal) {
+                    distanceideal = distance_actuelle;
+                    ideal = param;
+                }
+                if (distance_actuelle == distanceideal) {
+                    if (param.getSeuil() < ideal.getSeuil()) {
+                        ideal = param;
+                        distanceideal = distance_actuelle;
+                    }  
                 }
             }
+        }
+        
+        if (ideal!=null) {
+            String nomResolution = ideal.getResolution().getNom().toLowerCase();
+            if (nomResolution.contains("plus petit")) {
+                return valeurs.stream().min(Double::compare).orElse(0.0);
+
+            } else if (nomResolution.contains("plus grand")) {
+                return valeurs.stream().max(Double::compare).orElse(0.0);
+
+            } else if (nomResolution.contains("moyenne")) {
+                return calculMoyenne(valeurs);
+            }
+
         }
         return 0.0;
     }

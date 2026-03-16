@@ -94,7 +94,7 @@ public class NoteService {
                 }
             }
         }
-        
+        //truc machin
         if (ideal!=null) {
             String nomResolution = ideal.getResolution().getNom().toLowerCase();
             if (nomResolution.contains("plus petit")) {
